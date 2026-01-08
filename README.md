@@ -40,19 +40,20 @@ Integrate FFmpeg with Claude, Dive, and other MCP-compatible AI systems. Convert
 - H.264 optimization
 - Size reduction stats
 
-</td>
-<td width="50%">
-
 ### ✂️ **Video Trimming**
 - Precise start/end times
 - Duration-based cuts
 - Stream copy (fast)
 - No re-encoding needed
 
+</td>
+<td width="50%">
+
 ### 🎵 **Audio Extraction**
-- Multiple formats (MP3, AAC, WAV, FLAC, OGG, Opus)
+- Multiple formats supported
+- MP3, AAC, WAV, FLAC, OGG, Opus
 - Bitrate control
-- High quality extraction
+- High quality output
 
 ### 🎞️ **Advanced Features**
 - Merge multiple videos
@@ -62,7 +63,7 @@ Integrate FFmpeg with Claude, Dive, and other MCP-compatible AI systems. Convert
 
 ### 📝 **Subtitles**
 - Burn-in SRT/ASS/VTT subtitles
-- Multiple styles (outline, shadow, background, glow)
+- Multiple styles available
 - Customizable font size
 - Works great with Whisper MCP
 

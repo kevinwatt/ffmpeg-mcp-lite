@@ -4,14 +4,14 @@ from pathlib import Path
 
 import pytest
 
-from ffmpeg_mcp.tools.trim import ffmpeg_trim
+from ffmpeg_mcp_lite.tools.trim import ffmpeg_trim
 
 
 @pytest.mark.asyncio
 async def test_trim_with_duration(sample_video: Path, temp_dir: Path, monkeypatch):
     """Test trimming video with duration."""
     monkeypatch.setenv("FFMPEG_OUTPUT_DIR", str(temp_dir))
-    from ffmpeg_mcp import config
+    from ffmpeg_mcp_lite import config
     config.config = config.Config()
 
     result = await ffmpeg_trim(str(sample_video), start_time="0", duration="1")
@@ -24,7 +24,7 @@ async def test_trim_with_duration(sample_video: Path, temp_dir: Path, monkeypatc
 async def test_trim_with_end_time(sample_video: Path, temp_dir: Path, monkeypatch):
     """Test trimming video with end time."""
     monkeypatch.setenv("FFMPEG_OUTPUT_DIR", str(temp_dir))
-    from ffmpeg_mcp import config
+    from ffmpeg_mcp_lite import config
     config.config = config.Config()
 
     result = await ffmpeg_trim(str(sample_video), start_time="0", end_time="1")

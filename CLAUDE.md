@@ -23,7 +23,7 @@ FFmpeg MCP Server (`ffmpeg-mcp-lite`) - An MCP (Model Context Protocol) server p
 uv sync
 
 # Run the MCP server
-uv run ffmpeg-mcp
+uv run ffmpeg-mcp-lite
 
 # Run tests
 uv run pytest
@@ -43,7 +43,7 @@ uv run ruff check src/
 ### Project Structure
 
 ```
-src/ffmpeg_mcp/
+src/ffmpeg_mcp_lite/
 ├── __init__.py      # Package entry, exports main()
 ├── __main__.py      # Module entry point
 ├── server.py        # MCP server initialization and tool registration
@@ -92,4 +92,4 @@ Use `asyncio.create_subprocess_exec` for all FFmpeg/FFprobe calls. See `.claude/
 
 Update version in two places:
 1. `pyproject.toml` - `version` field
-2. `src/ffmpeg_mcp/__init__.py` - `__version__` variable
+2. `src/ffmpeg_mcp_lite/__init__.py` - `__version__` variable

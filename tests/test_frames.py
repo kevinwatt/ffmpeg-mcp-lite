@@ -4,14 +4,14 @@ from pathlib import Path
 
 import pytest
 
-from ffmpeg_mcp.tools.frames import ffmpeg_extract_frames
+from ffmpeg_mcp_lite.tools.frames import ffmpeg_extract_frames
 
 
 @pytest.mark.asyncio
 async def test_extract_frames_by_interval(sample_video: Path, temp_dir: Path, monkeypatch):
     """Test extracting frames at intervals."""
     monkeypatch.setenv("FFMPEG_OUTPUT_DIR", str(temp_dir))
-    from ffmpeg_mcp import config
+    from ffmpeg_mcp_lite import config
     config.config = config.Config()
 
     result = await ffmpeg_extract_frames(str(sample_video), interval=1.0)
@@ -24,7 +24,7 @@ async def test_extract_frames_by_interval(sample_video: Path, temp_dir: Path, mo
 async def test_extract_frames_by_count(sample_video: Path, temp_dir: Path, monkeypatch):
     """Test extracting specific number of frames."""
     monkeypatch.setenv("FFMPEG_OUTPUT_DIR", str(temp_dir))
-    from ffmpeg_mcp import config
+    from ffmpeg_mcp_lite import config
     config.config = config.Config()
 
     result = await ffmpeg_extract_frames(str(sample_video), count=5)
@@ -36,7 +36,7 @@ async def test_extract_frames_by_count(sample_video: Path, temp_dir: Path, monke
 async def test_extract_frames_png_format(sample_video: Path, temp_dir: Path, monkeypatch):
     """Test extracting frames as PNG."""
     monkeypatch.setenv("FFMPEG_OUTPUT_DIR", str(temp_dir))
-    from ffmpeg_mcp import config
+    from ffmpeg_mcp_lite import config
     config.config = config.Config()
 
     result = await ffmpeg_extract_frames(str(sample_video), interval=1.0, format="png")

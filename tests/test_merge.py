@@ -4,14 +4,14 @@ from pathlib import Path
 
 import pytest
 
-from ffmpeg_mcp.tools.merge import ffmpeg_merge
+from ffmpeg_mcp_lite.tools.merge import ffmpeg_merge
 
 
 @pytest.mark.asyncio
 async def test_merge_videos(sample_video: Path, temp_dir: Path, monkeypatch):
     """Test merging two video files."""
     monkeypatch.setenv("FFMPEG_OUTPUT_DIR", str(temp_dir))
-    from ffmpeg_mcp import config
+    from ffmpeg_mcp_lite import config
     config.config = config.Config()
 
     # Use the same video twice for testing

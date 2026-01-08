@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from ffmpeg_mcp.tools.info import ffmpeg_get_info
+from ffmpeg_mcp_lite.tools.info import ffmpeg_get_info
 
 
 @pytest.mark.asyncio

@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from ffmpeg_mcp.tools.subtitles import ffmpeg_add_subtitles
+from ffmpeg_mcp_lite.tools.subtitles import ffmpeg_add_subtitles
 
 
 @pytest.fixture
@@ -27,7 +27,7 @@ This is a test subtitle
 async def test_add_subtitles_basic(sample_video: Path, sample_srt: Path, temp_dir: Path, monkeypatch):
     """Test adding subtitles to a video."""
     monkeypatch.setenv("FFMPEG_OUTPUT_DIR", str(temp_dir))
-    from ffmpeg_mcp import config
+    from ffmpeg_mcp_lite import config
     config.config = config.Config()
 
     result = await ffmpeg_add_subtitles(str(sample_video), str(sample_srt))
@@ -40,7 +40,7 @@ async def test_add_subtitles_basic(sample_video: Path, sample_srt: Path, temp_di
 async def test_add_subtitles_with_style(sample_video: Path, sample_srt: Path, temp_dir: Path, monkeypatch):
     """Test adding subtitles with different styles."""
     monkeypatch.setenv("FFMPEG_OUTPUT_DIR", str(temp_dir))
-    from ffmpeg_mcp import config
+    from ffmpeg_mcp_lite import config
     config.config = config.Config()
 
     result = await ffmpeg_add_subtitles(

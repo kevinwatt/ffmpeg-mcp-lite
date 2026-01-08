@@ -2,7 +2,10 @@
 
 ## Overview
 
-This skill guides the development of `ffmpeg-mcp`, an MCP server that provides video and audio processing capabilities through FFmpeg.
+This skill guides the development of `ffmpeg-mcp-lite`, an MCP server that provides video and audio processing capabilities through FFmpeg.
+
+**Repository**: https://github.com/kevinwatt/ffmpeg-mcp-lite
+**PyPI**: https://pypi.org/project/ffmpeg-mcp-lite/
 
 ---
 
@@ -19,9 +22,9 @@ All tools use `ffmpeg_` prefix to avoid conflicts with other MCP servers.
 
 ---
 
-## Tools to Implement
+## Implemented Tools
 
-### P0 - Core Tools (Must Have)
+### Core Tools
 
 | Tool | Description | Parameters |
 |------|-------------|------------|
@@ -30,22 +33,16 @@ All tools use `ffmpeg_` prefix to avoid conflicts with other MCP servers.
 | `ffmpeg_compress` | Compress video (with optional scale) | `file_path`, `quality`, `scale?`, `preset?` |
 | `ffmpeg_trim` | Trim video segment | `file_path`, `start_time`, `end_time?`, `duration?` |
 | `ffmpeg_extract_audio` | Extract audio track | `file_path`, `audio_format`, `bitrate?` |
-
-### P1 - Secondary Tools (Nice to Have)
-
-| Tool | Description | Parameters |
-|------|-------------|------------|
 | `ffmpeg_merge` | Concatenate videos | `file_paths`, `output_path?` |
 | `ffmpeg_extract_frames` | Extract frames as images | `file_path`, `interval?`, `count?`, `format?` |
+| `ffmpeg_add_subtitles` | Burn-in subtitles to video | `file_path`, `subtitle_path`, `style?`, `font_size?`, `output_path?` |
 
 ---
 
-## Implementation Guidelines
-
-### 1. Project Structure
+## Project Structure
 
 ```
-ffmpeg-mcp/
+ffmpeg-mcp-lite/
 ├── src/ffmpeg_mcp/
 │   ├── __init__.py
 │   ├── __main__.py
@@ -53,20 +50,35 @@ ffmpeg-mcp/
 │   ├── config.py          # Configuration
 │   └── tools/
 │       ├── __init__.py
-│       ├── info.py
-│       ├── convert.py
-│       ├── compress.py
-│       ├── trim.py
-│       ├── audio.py
-│       ├── merge.py
-│       └── frames.py
+│       ├── info.py        # ffmpeg_get_info
+│       ├── convert.py     # ffmpeg_convert
+│       ├── compress.py    # ffmpeg_compress
+│       ├── trim.py        # ffmpeg_trim
+│       ├── audio.py       # ffmpeg_extract_audio
+│       ├── merge.py       # ffmpeg_merge
+│       ├── frames.py      # ffmpeg_extract_frames
+│       └── subtitles.py   # ffmpeg_add_subtitles
 ├── tests/
+│   ├── conftest.py
+│   ├── test_info.py
+│   ├── test_convert.py
+│   ├── test_compress.py
+│   ├── test_trim.py
+│   ├── test_audio.py
+│   ├── test_merge.py
+│   ├── test_frames.py
+│   └── test_subtitles.py
 ├── pyproject.toml
 ├── README.md
-└── CLAUDE.md
+├── CLAUDE.md
+└── LICENSE
 ```
 
-### 2. FastMCP Pattern
+---
+
+## Implementation Patterns
+
+### FastMCP Tool Registration
 
 ```python
 from mcp.server.fastmcp import FastMCP
@@ -87,22 +99,13 @@ async def ffmpeg_get_info(file_path: str) -> str:
     pass
 ```
 
-### 3. FFmpeg Execution Pattern
+### FFmpeg Async Execution
 
 ```python
 import asyncio
-import json
 
-async def run_ffprobe(file_path: str) -> dict:
-    """Run ffprobe and return parsed JSON output."""
-    cmd = [
-        "ffprobe",
-        "-v", "quiet",
-        "-print_format", "json",
-        "-show_format",
-        "-show_streams",
-        file_path
-    ]
+async def run_ffmpeg(cmd: list[str]) -> tuple[bytes, bytes]:
+    """Run FFmpeg command asynchronously."""
     proc = await asyncio.create_subprocess_exec(
         *cmd,
         stdout=asyncio.subprocess.PIPE,
@@ -110,42 +113,23 @@ async def run_ffprobe(file_path: str) -> dict:
     )
     stdout, stderr = await proc.communicate()
     if proc.returncode != 0:
-        raise RuntimeError(f"ffprobe failed: {stderr.decode()}")
-    return json.loads(stdout.decode())
+        raise RuntimeError(f"FFmpeg failed: {stderr.decode()}")
+    return stdout, stderr
 ```
 
-### 4. Error Handling
-
-Provide actionable error messages:
+### File Validation Pattern
 
 ```python
-class FFmpegError(Exception):
-    """FFmpeg execution error with helpful message."""
-    pass
+from pathlib import Path
 
 def validate_file(file_path: str) -> Path:
     """Validate file exists and is readable."""
     path = Path(file_path).expanduser().resolve()
     if not path.exists():
-        raise FFmpegError(f"File not found: {file_path}")
+        raise FileNotFoundError(f"File not found: {file_path}")
     if not path.is_file():
-        raise FFmpegError(f"Not a file: {file_path}")
+        raise ValueError(f"Not a file: {file_path}")
     return path
-```
-
-### 5. Tool Annotations
-
-```python
-@mcp.tool(
-    annotations={
-        "readOnlyHint": True,      # For get_info
-        "destructiveHint": False,
-        "idempotentHint": True,
-        "openWorldHint": False,
-    }
-)
-async def ffmpeg_get_info(file_path: str) -> str:
-    ...
 ```
 
 ---
@@ -162,17 +146,38 @@ async def ffmpeg_get_info(file_path: str) -> str:
 
 ---
 
+## Development Commands
+
+```bash
+# Install dependencies
+uv sync
+
+# Run the MCP server
+uv run ffmpeg-mcp
+
+# Run tests
+uv run pytest
+
+# Type checking
+uv run mypy src/
+
+# Linting
+uv run ruff check src/
+```
+
+---
+
 ## Quality Checklist
 
-Before completion, verify:
-
-- [ ] All tools have clear docstrings with Args and Returns
-- [ ] Input validation for all parameters
-- [ ] Proper async/await for subprocess calls
-- [ ] Actionable error messages
-- [ ] File path expansion (~, relative paths)
-- [ ] Output file naming convention
-- [ ] Progress indication for long operations (if supported)
+- [x] All tools have clear docstrings with Args and Returns
+- [x] Input validation for all parameters
+- [x] Proper async/await for subprocess calls
+- [x] Actionable error messages
+- [x] File path expansion (~, relative paths)
+- [x] Output file naming convention
+- [x] 31 test cases passing
+- [x] mypy type checking passing
+- [x] Published to PyPI
 
 ---
 

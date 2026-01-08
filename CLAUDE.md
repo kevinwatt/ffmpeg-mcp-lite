@@ -4,7 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-FFmpeg MCP Server - An MCP (Model Context Protocol) server providing video and audio processing capabilities through FFmpeg.
+FFmpeg MCP Server (`ffmpeg-mcp-lite`) - An MCP (Model Context Protocol) server providing video and audio processing capabilities through FFmpeg.
+
+- **Repository**: https://github.com/kevinwatt/ffmpeg-mcp-lite
+- **PyPI**: https://pypi.org/project/ffmpeg-mcp-lite/
 
 ## Technology Stack
 
@@ -52,8 +55,22 @@ src/ffmpeg_mcp/
     ├── trim.py      # ffmpeg_trim
     ├── audio.py     # ffmpeg_extract_audio
     ├── merge.py     # ffmpeg_merge
-    └── frames.py    # ffmpeg_extract_frames
+    ├── frames.py    # ffmpeg_extract_frames
+    └── subtitles.py # ffmpeg_add_subtitles
 ```
+
+### Available Tools (8 total)
+
+| Tool | Description |
+|------|-------------|
+| `ffmpeg_get_info` | Get video/audio metadata |
+| `ffmpeg_convert` | Convert format (with optional scale) |
+| `ffmpeg_compress` | Compress video (with optional scale) |
+| `ffmpeg_trim` | Trim video segment |
+| `ffmpeg_extract_audio` | Extract audio track |
+| `ffmpeg_merge` | Concatenate videos |
+| `ffmpeg_extract_frames` | Extract frames as images |
+| `ffmpeg_add_subtitles` | Burn-in subtitles to video |
 
 ### Tool Naming Convention
 

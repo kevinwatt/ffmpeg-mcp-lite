@@ -1,13 +1,33 @@
 [project]
-name = "ffmpeg-mcp"
+name = "ffmpeg-mcp-lite"
 version = "0.1.0"
 description = "MCP server providing video and audio processing capabilities through FFmpeg"
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.10"
+authors = [
+    { name = "Kevin Watt", email = "kevin@watt.tw" }
+]
+keywords = ["mcp", "ffmpeg", "video", "audio", "ai", "claude", "model-context-protocol"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Multimedia :: Sound/Audio",
+]
 dependencies = [
     "mcp>=1.0.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/kevinwatt/ffmpeg-mcp-lite"
+Repository = "https://github.com/kevinwatt/ffmpeg-mcp-lite"
+Issues = "https://github.com/kevinwatt/ffmpeg-mcp-lite/issues"
 
 [project.scripts]
 ffmpeg-mcp = "ffmpeg_mcp:main"

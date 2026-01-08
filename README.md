@@ -4,7 +4,7 @@
 
 **A powerful MCP server for video and audio processing through FFmpeg**
 
-[![PyPI version](https://img.shields.io/pypi/v/ffmpeg-mcp.svg)](https://pypi.org/project/ffmpeg-mcp/)
+[![PyPI version](https://img.shields.io/pypi/v/ffmpeg-mcp-lite.svg)](https://pypi.org/project/ffmpeg-mcp-lite/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python Version](https://img.shields.io/badge/python-%3E%3D3.10-blue)](https://www.python.org/)
 
@@ -100,7 +100,7 @@ Add the following config to your MCP client:
   "mcpServers": {
     "ffmpeg": {
       "command": "uvx",
-      "args": ["ffmpeg-mcp"]
+      "args": ["ffmpeg-mcp-lite"]
     }
   }
 }
@@ -124,7 +124,7 @@ Add the following config to your MCP client:
 Use the Claude Code CLI to add the ffmpeg MCP server:
 
 ```bash
-claude mcp add ffmpeg uvx ffmpeg-mcp
+claude mcp add ffmpeg uvx ffmpeg-mcp-lite
 ```
 
 </details>
@@ -143,7 +143,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "ffmpeg": {
       "command": "uvx",
-      "args": ["ffmpeg-mcp"]
+      "args": ["ffmpeg-mcp-lite"]
     }
   }
 }
@@ -164,7 +164,7 @@ Go to `Cursor Settings` -> `MCP` -> `New MCP Server`. Use the config provided ab
 Install via the VS Code CLI:
 
 ```bash
-code --add-mcp '{"name":"ffmpeg","command":"uvx","args":["ffmpeg-mcp"]}'
+code --add-mcp '{"name":"ffmpeg","command":"uvx","args":["ffmpeg-mcp-lite"]}'
 ```
 
 </details>
@@ -179,13 +179,13 @@ Follow the [configure MCP guide](https://docs.windsurf.com/windsurf/cascade/mcp#
 ### Manual Installation
 
 ```bash
-pip install ffmpeg-mcp
+pip install ffmpeg-mcp-lite
 ```
 
 Or with uv:
 
 ```bash
-uv pip install ffmpeg-mcp
+uv pip install ffmpeg-mcp-lite
 ```
 
 ---
@@ -379,7 +379,7 @@ Extract frames as images
   "mcpServers": {
     "ffmpeg": {
       "command": "uvx",
-      "args": ["ffmpeg-mcp"],
+      "args": ["ffmpeg-mcp-lite"],
       "env": {
         "FFMPEG_OUTPUT_DIR": "/path/to/output"
       }
@@ -423,8 +423,8 @@ Contributions are welcome!
 
 ```bash
 # Clone and install
-git clone https://github.com/kevinwatt/ffmpeg-mcp.git
-cd ffmpeg-mcp
+git clone https://github.com/kevinwatt/ffmpeg-mcp-lite.git
+cd ffmpeg-mcp-lite
 uv sync
 
 # Run tests

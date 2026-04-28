@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/kevinwatt-ffmpeg-mcp-lite-badge.png)](https://mseep.ai/app/kevinwatt-ffmpeg-mcp-lite)
+
 # 🎬 ffmpeg-mcp
 
 <div align="center">

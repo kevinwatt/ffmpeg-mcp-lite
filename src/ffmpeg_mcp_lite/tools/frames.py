@@ -11,7 +11,7 @@ async def ffmpeg_extract_frames(
     file_path: str,
     interval: Optional[float] = None,
     count: Optional[int] = None,
-    format: Literal["jpg", "png", "bmp"] = "jpg",
+    format: Literal["jpg", "png", "bmp", "webp"] = "jpg",
 ) -> str:
     """Extract frames from a video as images.
 
@@ -19,7 +19,7 @@ async def ffmpeg_extract_frames(
         file_path: Path to the input video file
         interval: Extract one frame every N seconds (e.g., 1.0 for one frame per second)
         count: Total number of frames to extract (evenly distributed). Mutually exclusive with interval.
-        format: Output image format (jpg, png, bmp)
+        format: Output image format (jpg, png, bmp, webp)
 
     Returns:
         Path to the directory containing extracted frames

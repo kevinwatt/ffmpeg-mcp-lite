@@ -1,6 +1,6 @@
 """FFmpeg MCP Server - Video and audio processing through MCP."""
 
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 
 from .server import main
 

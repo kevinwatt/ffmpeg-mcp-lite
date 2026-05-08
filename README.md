@@ -59,7 +59,7 @@ Integrate FFmpeg with Claude, Dive, and other MCP-compatible AI systems. Convert
 - Merge multiple videos
 - Extract frames as images
 - Interval or count-based extraction
-- JPG, PNG, BMP output
+- JPG, PNG, BMP, WebP output
 
 ### 📝 **Subtitles**
 - Burn-in SRT/ASS/VTT subtitles
@@ -302,7 +302,7 @@ Extract audio track from video
 
 Extract frames as images
 - **Parameters**: `file_path`, `interval` or `count`, `format`
-- **Formats**: jpg, png, bmp
+- **Formats**: jpg, png, bmp, webp
 
 </td>
 </tr>

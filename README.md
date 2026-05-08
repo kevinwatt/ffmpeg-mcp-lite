@@ -378,7 +378,10 @@ Burn-in subtitles to video (hardcode)
 "Extract one frame every 5 seconds from video.mp4"
 "Get 10 frames evenly distributed from this video"
 "Extract frames as PNG images"
+"Extract frames as WebP for screen recordings"
 ```
+
+> 💡 For screen recordings, prefer `png` or `webp` over `jpg` — JPEG chroma subsampling smears anti-aliased text and 1px UI borders.
 
 ### Merge Videos
 
@@ -438,7 +441,7 @@ Burn-in subtitles to video (hardcode)
 
 - ✅ **Async Processing**: Non-blocking FFmpeg execution
 - ✅ **Type Safe**: Full type hints with mypy validation
-- ✅ **Well Tested**: 31 test cases with pytest
+- ✅ **Well Tested**: 32 test cases with pytest
 - ✅ **Cross Platform**: Works on Windows, macOS, Linux
 - ✅ **Modular Design**: One file per tool
 

@@ -67,6 +67,12 @@ Integrate FFmpeg with Claude, Dive, and other MCP-compatible AI systems. Convert
 - Customizable font size
 - Works great with Whisper MCP
 
+### 📈 **Audio Analysis**
+- EBU R128 loudness (LRA, true peak)
+- RMS energy envelope over time
+- Spectrogram & waveform images
+- Build/drop vs. flat-loop verdict
+
 </td>
 </tr>
 </table>
@@ -328,6 +334,25 @@ Burn-in subtitles to video (hardcode)
 </tr>
 </table>
 
+### 📈 Audio Analysis
+
+<table>
+<tr>
+<th width="30%">Tool</th>
+<th width="70%">Description</th>
+</tr>
+<tr>
+<td><code>ffmpeg_analyze_audio</code></td>
+<td>
+
+Analyze audio dynamics/structure — judge a genuine build/drop vs. a flat loop
+- **Parameters**: `file_path`, `output_dir`
+- **Produces**: loudness (EBU R128), astats, RMS energy envelope CSV, spectrogram, waveform, summary report
+
+</td>
+</tr>
+</table>
+
 ---
 
 ## 💡 Usage Examples
@@ -398,6 +423,14 @@ Burn-in subtitles to video (hardcode)
 "Add subtitles with font size 32 and glow effect"
 ```
 
+### Analyze Audio Dynamics
+
+```
+"Analyze the dynamics of track.mp3 — is it a flat loop or does it build and drop?"
+"Check the loudness range of this audio file"
+"Generate a spectrogram for this track"
+```
+
 ---
 
 ## 🔧 Configuration
@@ -441,7 +474,7 @@ Burn-in subtitles to video (hardcode)
 
 - ✅ **Async Processing**: Non-blocking FFmpeg execution
 - ✅ **Type Safe**: Full type hints with mypy validation
-- ✅ **Well Tested**: 32 test cases with pytest
+- ✅ **Well Tested**: 36 test cases with pytest
 - ✅ **Cross Platform**: Works on Windows, macOS, Linux
 - ✅ **Modular Design**: One file per tool
 

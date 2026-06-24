@@ -56,10 +56,11 @@ src/ffmpeg_mcp_lite/
     ├── audio.py     # ffmpeg_extract_audio
     ├── merge.py     # ffmpeg_merge
     ├── frames.py    # ffmpeg_extract_frames
-    └── subtitles.py # ffmpeg_add_subtitles
+    ├── subtitles.py # ffmpeg_add_subtitles
+    └── analyze_audio.py # ffmpeg_analyze_audio
 ```
 
-### Available Tools (8 total)
+### Available Tools (9 total)
 
 | Tool | Description |
 |------|-------------|
@@ -71,6 +72,7 @@ src/ffmpeg_mcp_lite/
 | `ffmpeg_merge` | Concatenate videos |
 | `ffmpeg_extract_frames` | Extract frames as images |
 | `ffmpeg_add_subtitles` | Burn-in subtitles to video |
+| `ffmpeg_analyze_audio` | Loudness/energy/spectrogram dynamics analysis |
 
 ### Tool Naming Convention
 

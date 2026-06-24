@@ -10,6 +10,7 @@ from .tools.audio import ffmpeg_extract_audio
 from .tools.merge import ffmpeg_merge
 from .tools.frames import ffmpeg_extract_frames
 from .tools.subtitles import ffmpeg_add_subtitles
+from .tools.analyze_audio import ffmpeg_analyze_audio
 
 mcp = FastMCP("ffmpeg-mcp")
 
@@ -22,6 +23,7 @@ mcp.tool()(ffmpeg_extract_audio)
 mcp.tool()(ffmpeg_merge)
 mcp.tool()(ffmpeg_extract_frames)
 mcp.tool()(ffmpeg_add_subtitles)
+mcp.tool()(ffmpeg_analyze_audio)
 
 
 def main() -> None:

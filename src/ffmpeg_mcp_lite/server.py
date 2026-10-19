@@ -1,6 +1,9 @@
 """MCP server initialization and tool registration."""
 
-from mcp.server.fastmcp import FastMCP
+try:
+    from mcp.server.mcpserver import MCPServer
+except ImportError:  # mcp<2, before FastMCP was renamed to MCPServer
+    from mcp.server.fastmcp import FastMCP as MCPServer
 
 from .tools.info import ffmpeg_get_info
 from .tools.convert import ffmpeg_convert
@@ -11,7 +14,7 @@ from .tools.merge import ffmpeg_merge
 from .tools.frames import ffmpeg_extract_frames
 from .tools.subtitles import ffmpeg_add_subtitles
 
-mcp = FastMCP("ffmpeg-mcp")
+mcp = MCPServer("ffmpeg-mcp")
 
 # Register all tools
 mcp.tool()(ffmpeg_get_info)

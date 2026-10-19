@@ -12,7 +12,7 @@ FFmpeg MCP Server (`ffmpeg-mcp-lite`) - An MCP (Model Context Protocol) server p
 ## Technology Stack
 
 - **Language**: Python 3.10+
-- **Framework**: FastMCP (from `mcp` package)
+- **Framework**: MCPServer (FastMCP on mcp<2) from the `mcp` package
 - **Package Manager**: uv
 - **External Dependencies**: FFmpeg, FFprobe
 
